@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
   load_and_authorize_resource
   def index
     @recipes = Recipe.all
+    @recipes_for_user_not_logged_in = Recipe.where(public: true)
   end
 
   def show
