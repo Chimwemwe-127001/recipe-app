@@ -8,5 +8,7 @@ class Ability
     else
       can :manage, Recipe, user_id: user.id
     end
+    # can read recipes where public is true
+    can :read, Recipe, public: true
   end
 end
