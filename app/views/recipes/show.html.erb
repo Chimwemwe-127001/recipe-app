@@ -24,13 +24,17 @@
     <% if user_signed_in? %>
       <div class="d-flex justify-content-around" style="margin-bottom: 2rem;">
         <div class="w-30">
-          <%= link_to "Generate shopping list", recipes_path, data: {disable_with: "Adding..."}, class: "btn btn-info btn-floating mx-1"%>
+          <%= link_to "Generate shopping list", recipes_path, data: {disable_with: "Adding..."}, class: "btn btn-info"%>
         </div>
-        <div>
-          <%= link_to "Add ingredient", recipes_path, data: {disable_with: "Adding..."}, class: "btn btn-info btn-floating mx-1"%>
-        </div>
+        <% if can? :update, @recipe %>
+          <div>
+            <%= link_to 'Add ingredient', new_recipe_recipe_food_path(@recipe), class: "btn btn-info" %>
+          </div>
+        <% end %>
       </div>
     <% end %>
-    
+    <div class="column is-three-quarters">
+      <%= render partial: "recipe_foods/index", locals: { recipe_foods: @recipe } %>
+    </div>
   </div>
 </div>
