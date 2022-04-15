@@ -4,7 +4,7 @@ class FoodsController < ApplicationController
 
   def index
     if user_signed_in?
-      @food = current_user.foods
+      @food = Food.includes(:user).where(user_id: current_user.id)
     else
       redirect_to user_session_path
     end
