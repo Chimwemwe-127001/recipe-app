@@ -18,5 +18,5 @@ RSpec.describe 'Log in', type: :feature do
     fill_in 'user[password]', with: 'password'
     click_button 'Sign up'
     expect(page).to have_content "Name can't be blank"
-  end 
+  end
 end

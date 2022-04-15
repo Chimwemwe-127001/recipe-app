@@ -5,7 +5,8 @@ RSpec.describe 'RecipeFoods', type: :request do
   let(:user) { User.create(name: 'Kolly', email: 'kolly@mail.com', password: 'password', confirmed_at: Time.now) }
   let(:food) { user.foods.create(name: 'apple', measurement_unit: 'kg', price: 4, user_id: user.id) }
   let(:recipe) do
-    user.recipes.create(name: 'Pizza', cookingTime: 1, preparationTime: 2, description: 'Try to test', public: false, user_id: user.id)
+    user.recipes.create(name: 'Pizza', cookingTime: 1, preparationTime: 2, description: 'Try to test', public: false,
+                        user_id: user.id)
     describe 'GET /index' do
       before do
         sign_in user

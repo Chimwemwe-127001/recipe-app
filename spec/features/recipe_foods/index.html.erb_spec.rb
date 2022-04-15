@@ -5,7 +5,10 @@ RSpec.describe 'Recipe Foods', type: :feature do
 
   let(:user) { User.create(name: 'Donard', email: 'a@game.com', password: 'password', confirmed_at: Time.now) }
   let(:food) { Food.create(user_id: user.id, name: 'Apple', measurement_unit: 'kg', price: 12) }
-  let(:recipe) { Recipe.create(name: 'Pizza', cooking_time: 1, preparation_time: 2, description: 'description', public: false, user_id: user.id) }
+  let(:recipe) do
+    Recipe.create(name: 'Pizza', cooking_time: 1, preparation_time: 2, description: 'description', public: false,
+                  user_id: user.id)
+  end
   let(:recipe_food) { RecipeFood.create(quantity: 10, food_id: food.id, recipe_id: recipe.id) }
 
   describe 'GET /index' do
@@ -17,11 +20,11 @@ RSpec.describe 'Recipe Foods', type: :feature do
     end
 
     it 'should check prepationTime of recipe with name "Pizza"' do
-      expect(recipe.preparation_time).to eq("2")
+      expect(recipe.preparation_time).to eq('2')
     end
 
     it 'should check cookingTime of recipe with name "Pizza"' do
-      expect(recipe.cooking_time).to eq("1")
+      expect(recipe.cooking_time).to eq('1')
     end
 
     it 'should check if recipe_food with name "Apple" exists' do
