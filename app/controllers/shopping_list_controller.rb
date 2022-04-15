@@ -3,7 +3,7 @@ class ShoppingListController < ApplicationController
   include ShoppingListHelper
 
   def index
-    @recipes = current_user.recipes
+    @recipes = Recipe.includes(:user).where(user_id: current_user.id)
     @foods = foods_join
     @total_price = 0
     @recipes.each do |recipe|
