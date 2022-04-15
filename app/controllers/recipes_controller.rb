@@ -1,8 +1,7 @@
 class RecipesController < ApplicationController
   load_and_authorize_resource
   def index
-    @recipes = Recipe.all
-    @recipes_for_user_not_logged_in = Recipe.where(public: true)
+    @recipes = Recipe.where(user_id: current_user.id)
   end
 
   def show
@@ -15,7 +14,6 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = current_user.recipes.build(recipe_params)
-
     respond_to do |format|
       format.html do
         if @recipe.save

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   
   resources :recipe_foods, only: [:index, :edit, :update, :destroy, :create, :new]
   
+  resources :public_recipes, only: %i[index]
+
   root to: 'foods#index'
   resources :foods, only: [:index, :create, :new, :destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
